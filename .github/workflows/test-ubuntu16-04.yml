@@ -24,7 +24,7 @@ jobs:
 
     - name: install dependencies (moab)
       run: |
-        sudo apt install autoconf libtool automake
+        sudo apt install autoconf libtool automake libeigen3-dev
 
     - name: fetch moab repo
       run: |
