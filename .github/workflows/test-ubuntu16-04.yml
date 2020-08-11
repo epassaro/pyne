@@ -43,13 +43,15 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=$HOME/moab
         make
         make install
+        export LD_LIBRARY_PATH=$HOME/moab/lib:$LD_LIBRARY_PATH
+        export LIBRARY_PATH=$HOME/moab/lib:$LIBRARY_PATH
 
     - name: build and install pyne
       run: |
-        python setup.py -DMOAB_INCLUDE_DIR=$HOME/moab/include -DMOAB_LIBRARY=$HOME/moab/lib/libMOAB.so install --user
+        python setup.py install --user --moab $HOME/moab
         scripts/nuc_data_make
 
-    - name: test import pyne
+    - name: test import
       run: |
         cd $HOME
         python -c 'import pyne; print(pyne.__version__)'
