@@ -15,7 +15,7 @@ jobs:
 
     - name: install dependencies
       run: |
-        sudo apt install build-essential gfortran python-numpy python-scipy cython python-tables libblas-dev liblapack-dev
+        sudo apt install build-essential gfortran python-numpy python-scipy cython libhdf5-serial-dev python-tables libblas-dev liblapack-dev
 
     - name: install pyne
       run: |
