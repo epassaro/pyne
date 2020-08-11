@@ -6,7 +6,7 @@ name: CI
 # events but only for the develop branch
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, issue-870 ]
   pull_request:
     branches: [ develop ]
 
