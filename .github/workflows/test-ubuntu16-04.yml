@@ -13,16 +13,38 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: install dependencies
+    - name: install dependencies (apt-get)
       run: |
-        sudo apt install build-essential gfortran libhdf5-serial-dev libblas-dev liblapack-dev python3 python3-setuptools python3-pip
+        sudo apt install build-essential git gfortran libhdf5-serial-dev libblas-dev liblapack-dev python3 python3-setuptools python3-pip
 
-    - name: install pip dependencies
+    - name: install dependencies (pip)
       run: |
         python -m pip install --upgrade pip
         pip install numpy scipy cython tables --user
 
-    - name: install pyne
+    - name: install dependencies (moab)
       run: |
-        python setup.py install --user
+        sudo apt install autoconf libtool automake
+
+    - name: fetch moab repo
+      run: |
+        git clone https://bitbucket.org/fathomteam/moab.git moab-repo
+
+    - name: build moab
+      run: |
+        cd moab-repo
+        mkdir -p build
+        cd build
+        cmake ../ -DENABLE_HDF5=ON -DHDF5_ROOT=${hdf5_libdir} \
+                  -DBUILD_SHARED_LIBS=ON \
+                  -DENABLE_PYMOAB=ON \
+                  -DENABLE_BLASLAPACK=OFF \
+                  -DENABLE_FORTRAN=OFF \
+                  -DCMAKE_INSTALL_PREFIX=${install_dir}/moab
+        make
+        make install
+
+    - name: build and install pyne
+      run: |
+        python setup.py -DMOAB_INCLUDE_DIR=moab-repo/MOAB/include -DMOAB_LIBRARY=/path/to/MOAB/libMOAB.so install --user
         scripts/nuc_data_make
