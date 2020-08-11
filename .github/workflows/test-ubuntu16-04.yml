@@ -35,12 +35,12 @@ jobs:
         cd moab-repo
         mkdir -p build
         cd build
-        cmake ../ -DENABLE_HDF5=ON -DHDF5_ROOT=${hdf5_libdir} \
+        cmake ../ -DENABLE_HDF5=ON \
                   -DBUILD_SHARED_LIBS=ON \
                   -DENABLE_PYMOAB=ON \
                   -DENABLE_BLASLAPACK=OFF \
                   -DENABLE_FORTRAN=OFF \
-                  -DCMAKE_INSTALL_PREFIX=${install_dir}/moab
+                  -DCMAKE_INSTALL_PREFIX=$HOME/moab
         make
         make install
 
