@@ -15,7 +15,7 @@ jobs:
 
     - name: install dependencies
       run: |
-        sudo apt install build-essential gfortran libhdf5-serial-dev libblas-dev liblapack-dev python3 python3-pip
+        sudo apt install build-essential gfortran libhdf5-serial-dev libblas-dev liblapack-dev python3 python3-setuptools python3-pip
 
     - name: install pip dependencies
       run: |
