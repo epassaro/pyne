@@ -19,7 +19,7 @@ jobs:
 
     - name: install pip dependencies
       run: |
-        pip install numpy scipy cython pytables --user
+        pip2 install numpy scipy cython pytables --user
 
     - name: install pyne
       run: |
