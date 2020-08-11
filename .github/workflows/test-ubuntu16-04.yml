@@ -43,8 +43,6 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=$HOME/moab
         make
         make install
-        export LD_LIBRARY_PATH=$HOME/moab/lib:$LD_LIBRARY_PATH
-        export LIBRARY_PATH=$HOME/moab/lib:$LIBRARY_PATH
 
     - name: build and install pyne
       run: |
