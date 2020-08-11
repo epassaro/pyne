@@ -46,5 +46,9 @@ jobs:
 
     - name: build and install pyne
       run: |
-        python setup.py -DMOAB_INCLUDE_DIR=$HOME/moab/include -DMOAB_LIBRARY=$HOME/moab/lib/MOAB.so install --user
+        python setup.py -DMOAB_INCLUDE_DIR=$HOME/moab/include -DMOAB_LIBRARY=$HOME/moab/lib/libMOAB.so install --user
         scripts/nuc_data_make
+
+    - name: test import pyne
+      run: |
+        python -c 'import pyne; print(pyne.__version__)'
